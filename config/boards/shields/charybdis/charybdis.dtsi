@@ -31,7 +31,7 @@
 
     trackball: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610";
+        compatible = "pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
@@ -74,12 +74,17 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                 RC(2,6) RC(2,7) 
         label = "KSCAN";
 
         diode-direction = "row2col";
-		row-gpios
-            = <&pro_micro 21 (GPIO_ACTIVE_HIGH)>
-	        , <&pro_micro 18 (GPIO_ACTIVE_HIGH)>
-            , <&pro_micro 5 (GPIO_ACTIVE_HIGH)>
-            , <&pro_micro 4 (GPIO_ACTIVE_HIGH)>
-            ;
+		row-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>,  // GP0 (Row 0)
+             <&gpio0 1 GPIO_ACTIVE_HIGH>,  // GP1 (Row 1)
+             <&gpio0 2 GPIO_ACTIVE_HIGH>,  // GP2 (Row 2)
+             <&gpio0 3 GPIO_ACTIVE_HIGH>;  // GP3 (Row 3)
+
+        col-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,  // GP6 (Col 0)
+             <&gpio0 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,  // GP7 (Col 1)
+             <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,  // GP8 (Col 2)
+             <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,  // GP9 (Col 3)
+             <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, // GP10 (Col 4)
+             <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>; // GP11 (Col 5)
     };
 
     trackball_listener {
